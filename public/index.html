@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Rajiv Bhardwaj — Full Stack Developer & AI Enthusiast</title>
+    <meta
+      name="description"
+      content="Portfolio of Rajiv Bhardwaj — Computer Science student, MERN stack developer, and AI enthusiast building scalable web applications and intelligent systems."
+    />
+    <meta name="author" content="Rajiv Bhardwaj" />
+    <meta
+      name="keywords"
+      content="Rajiv Bhardwaj, Full Stack Developer, MERN Stack, AI Developer, React, Node.js, Portfolio, Computer Science, Face Recognition, Machine Learning"
+    />
+    <meta name="theme-color" content="#07080e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafafc" media="(prefers-color-scheme: light)" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Rajiv Bhardwaj — Full Stack Developer & AI Enthusiast"
+    />
+    <meta
+      property="og:description"
+      content="MERN Stack Developer building modern, scalable apps and AI-powered tools."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://rajivBhardwaj07.dev/" />
+
+    <!-- Avoid theme flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          var m = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var root = document.documentElement;
+          if (t === "dark" || (!t && m)) root.classList.add("dark");
+          else root.classList.remove("dark");
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/styles.css" />
+
+    <!-- Icons (Feather Icons via CDN) -->
+    <script src="https://unpkg.com/feather-icons" defer></script>
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rajiv Bhardwaj",
+        "jobTitle": "Full Stack Developer & AI Enthusiast",
+        "url": "https://rajivBhardwaj07.dev",
+        "sameAs": [
+          "https://github.com/rajivBhardwaj07",
+          "https://www.linkedin.com/in/rajiv-bhardwaj-251a78293/"
+        ]
+      }
+    </script>
+  </head>
+
+  <body class="min-h-screen overflow-x-hidden">
+    <!-- Loading screen -->
+    <div id="loader" role="status" aria-label="Loading">
+      <div class="absolute inset-0 grid-bg opacity-50"></div>
+      <div class="absolute inset-0 bg-hero-radial"></div>
+      <div class="relative flex flex-col items-center gap-6">
+        <div class="relative h-20 w-20">
+          <div
+            class="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-500 to-accent-400 opacity-80 blur-xl"
+          ></div>
+          <div
+            class="relative grid h-full w-full place-items-center rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl"
+          >
+            <span class="font-mono text-2xl font-bold gradient-text">RB</span>
+          </div>
+        </div>
+        <div class="text-sm font-medium tracking-[0.3em] text-slate-400">
+          LOADING PORTFOLIO
+        </div>
+        <div class="bar"></div>
+      </div>
+    </div>
+
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div id="cursor-glow" aria-hidden="true"></div>
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Navbar -->
+    <header
+      id="navbar"
+      class="fixed inset-x-0 top-0 z-50 transition-all duration-300 py-4"
+    >
+      <div class="container-x px-4 sm:px-6 lg:px-8">
+        <nav
+          id="nav-shell"
+          class="flex items-center justify-between rounded-2xl border border-transparent px-4 py-3 transition-all"
+          aria-label="Primary"
+        >
+          <a href="#home" class="flex items-center gap-2 font-semibold">
+            <span
+              class="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-400 text-white shadow-glow"
+            >
+              <span class="font-mono text-sm font-bold">RB</span>
+            </span>
+            <span class="hidden sm:block">
+              <span class="block text-sm font-semibold">Rajiv Bhardwaj</span>
+              <span
+                class="block text-[10px] uppercase tracking-[0.2em]"
+                style="color: rgb(var(--muted))"
+                >Full Stack · AI</span
+              >
+            </span>
+          </a>
+
+          <ul id="nav-links" class="hidden items-center gap-1 md:flex">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#github" class="nav-link">GitHub</a></li>
+            <li><a href="#certifications" class="nav-link">Certs</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+
+          <div class="flex items-center gap-2">
+            <button
+              id="theme-toggle"
+              type="button"
+              aria-label="Toggle theme"
+              class="grid h-10 w-10 place-items-center rounded-full border backdrop-blur transition-colors"
+              style="
+                border-color: rgb(var(--border));
+                background-color: rgb(var(--card) / 0.6);
+              "
+            >
+              <i data-feather="moon" class="h-5 w-5 hidden dark:block"></i>
+              <i data-feather="sun" class="h-5 w-5 dark:hidden"></i>
+            </button>
+            <a
+              href="#contact"
+              class="hidden rounded-full bg-gradient-to-r from-brand-500 to-accent-400 px-4 py-2 text-sm font-semibold text-white shadow-glow md:inline-flex"
+              >Hire me</a
+            >
+            <button
+              id="mobile-toggle"
+              type="button"
+              aria-label="Toggle menu"
+              aria-expanded="false"
+              class="grid h-10 w-10 place-items-center rounded-full border backdrop-blur md:hidden"
+              style="
+                border-color: rgb(var(--border));
+                background-color: rgb(var(--card) / 0.6);
+              "
+            >
+              <i data-feather="menu" class="h-5 w-5"></i>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Mobile menu -->
+        <div
+          id="mobile-menu"
+          class="hidden mt-2 rounded-2xl border p-2 backdrop-blur-2xl shadow-xl md:hidden"
+          style="
+            border-color: rgb(var(--border));
+            background-color: rgb(var(--card) / 0.9);
+          "
+        >
+          <ul class="grid gap-1">
+            <li><a href="#home" class="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-brand-500/10 hover:text-brand-400">Home</a></li>
+            <li><a href="#about" class="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-brand-500/10 hover:text-brand-400">About</a></li>
+            <li><a href="#skills" class="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-brand-500/10 hover:text-brand-400">Skills</a></li>
+            <li><a href="#projects" class="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-brand-500/10 hover:text-brand-400">Projects</a></li>
+            <li><a href="#experience" class="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-brand-500/10 hover:text-brand-400">Experience</a></li>
+            <li><a href="#github" class="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-brand-500/10 hover:text-brand-400">GitHub</a></li>
+            <li><a href="#certifications" class="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-brand-500/10 hover:text-brand-400">Certs</a></li>
+            <li><a href="#contact" class="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-brand-500/10 hover:text-brand-400">Contact</a></li>
+            <li>
+              <a
+                href="#contact"
+                class="mt-1 block rounded-xl bg-gradient-to-r from-brand-500 to-accent-400 px-4 py-3 text-center text-sm font-semibold text-white"
+                >Hire me</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative z-10">
+      <!-- ============== HERO ============== -->
+      <section
+        id="home"
+        class="relative flex min-h-[100svh] items-center overflow-hidden pt-28 md:pt-32"
+      >
+        <div class="absolute inset-0 -z-10 grid-bg"></div>
+        <div class="absolute inset-0 -z-10 bg-hero-radial"></div>
+
+        <div class="container-x grid w-full gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
+          <div class="lg:col-span-7">
+            <div class="chip reveal" style="color: rgb(var(--muted))">
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+              </span>
+              Available for internships 
+            </div>
+
+            <h1
+              class="reveal reveal-delay-1 mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+            >
+              Hi, I'm <span class="gradient-text">Rajiv Bhardwaj</span><br />
+              <span style="color: rgb(var(--muted))">I build </span>
+              <span id="typed" class="font-semibold" style="color: rgb(var(--fg))"></span>
+              <span class="caret"></span>
+            </h1>
+
+            <p
+              class="reveal reveal-delay-2 mt-6 max-w-2xl text-base leading-relaxed sm:text-lg"
+              style="color: rgb(var(--muted))"
+            >
+              Computer Science student & aspiring
+              <span style="color: rgb(var(--fg))"
+                >Full Stack + AI Developer</span
+              >. I love crafting modern web experiences, designing scalable
+              backends, and shipping intelligent features powered by computer
+              vision and machine learning.
+            </p>
+
+            <div class="reveal reveal-delay-3 mt-8 flex flex-wrap items-center gap-3">
+              <a href="#projects" class="btn-primary group">
+                View Projects
+                <i data-feather="arrow-right" class="h-4 w-4"></i>
+              </a>
+              <a href="/resume.pdf" download class="btn-ghost">
+                <i data-feather="download" class="h-4 w-4"></i>
+                Download Resume
+              </a>
+              <a href="#contact" class="btn-ghost">
+                <i data-feather="mail" class="h-4 w-4"></i>
+                Contact Me
+              </a>
+            </div>
+
+            <div class="reveal reveal-delay-4 mt-8 flex items-center gap-3">
+              <span
+                class="text-xs uppercase tracking-[0.25em]"
+                style="color: rgb(var(--muted))"
+                >Find me on</span
+              >
+              <div class="flex items-center gap-2">
+                <a
+                  href="https://github.com/rajivBhardwaj07"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  class="grid h-10 w-10 place-items-center rounded-full border backdrop-blur transition-all hover:-translate-y-0.5 hover:text-brand-400"
+                  style="
+                    border-color: rgb(var(--border));
+                    background-color: rgb(var(--card) / 0.6);
+                    color: rgb(var(--muted));
+                  "
+                >
+                  <i data-feather="github" class="h-4 w-4"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/rajiv-bhardwaj-251a78293/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  class="grid h-10 w-10 place-items-center rounded-full border backdrop-blur transition-all hover:-translate-y-0.5 hover:text-brand-400"
+                  style="
+                    border-color: rgb(var(--border));
+                    background-color: rgb(var(--card) / 0.6);
+                    color: rgb(var(--muted));
+                  "
+                >
+                  <i data-feather="linkedin" class="h-4 w-4"></i>
+                </a>
+                <a
+                  href="mailto:rajivbhardwaj7707@gmail.com"
+                  aria-label="Email"
+                  class="grid h-10 w-10 place-items-center rounded-full border backdrop-blur transition-all hover:-translate-y-0.5 hover:text-brand-400"
+                  style="
+                    border-color: rgb(var(--border));
+                    background-color: rgb(var(--card) / 0.6);
+                    color: rgb(var(--muted));
+                  "
+                >
+                  <i data-feather="mail" class="h-4 w-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative lg:col-span-5">
+            <div class="reveal reveal-delay-2 relative mx-auto aspect-square w-full max-w-md">
+              <div
+                class="absolute -inset-6 rounded-[2.25rem] bg-gradient-to-br from-brand-500/40 via-fuchsia-500/30 to-accent-400/40 blur-3xl"
+              ></div>
+              <div
+                class="relative h-full w-full overflow-hidden rounded-[2rem] border border-white/15 p-1.5 backdrop-blur-xl shadow-2xl"
+                style="background-color: rgb(var(--card) / 0.6)"
+              >
+                <div
+                  class="relative h-full w-full overflow-hidden rounded-[1.7rem] bg-gradient-to-br from-brand-500/10 via-transparent to-accent-400/10"
+                >
+                  <div class="absolute inset-0 grid place-items-center">
+                    <div class="relative">
+                      <div
+                        class="absolute inset-0 -m-8 rounded-full bg-gradient-to-tr from-brand-500 to-accent-400 opacity-30 blur-2xl"
+                      ></div>
+                      <div
+                        class="relative grid h-44 w-44 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-accent-400 text-6xl font-extrabold text-white shadow-glow ring-4 ring-white/10 sm:h-52 sm:w-52"
+                      >
+                        RB
+                      </div>
+                    </div>
+                  </div>
+                  <div class="absolute inset-0 noise opacity-[0.06]"></div>
+
+                  <div class="absolute left-4 top-6 chip animate-float">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                    React · Tailwind
+                  </div>
+                  <div class="absolute right-5 top-16 chip animate-float" style="animation-delay: 0.4s">
+                    <span class="h-1.5 w-1.5 rounded-full bg-fuchsia-400"></span>
+                    Node · Mongo
+                  </div>
+                  <div class="absolute bottom-6 left-6 chip animate-float" style="animation-delay: 0.8s">
+                    <span class="h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
+                    AI · OpenCV
+                  </div>
+                  <div class="absolute bottom-10 right-4 chip animate-float" style="animation-delay: 1.2s">
+                    <span class="h-1.5 w-1.5 rounded-full bg-yellow-400"></span>
+                    JavaScript
+                  </div>
+                </div>
+              </div>
+              <div
+                class="absolute -bottom-6 -left-6 h-24 w-24 rounded-full border border-dashed border-brand-400/30 opacity-70 animate-spin-slow"
+              ></div>
+              <div
+                class="absolute -right-4 -top-4 h-16 w-16 rounded-full bg-gradient-to-br from-brand-500/20 to-accent-400/20 blur-xl"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="#about"
+          aria-label="Scroll to About"
+          class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full border px-3 py-2 text-xs backdrop-blur md:inline-flex"
+          style="
+            border-color: rgb(var(--border));
+            background-color: rgb(var(--card) / 0.6);
+            color: rgb(var(--muted));
+          "
+        >
+          Scroll
+          <i data-feather="arrow-down" class="h-3 w-3 animate-bounce"></i>
+        </a>
+      </section>
+
+      <!-- ============== ABOUT ============== -->
+      <section id="about" class="section-padding relative">
+        <div class="container-x">
+          <div class="reveal mb-12 mx-auto max-w-2xl text-center md:mb-16">
+            <div class="chip mx-auto mb-4" style="color: rgb(var(--muted))">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+              About Me
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              Builder at heart, <span class="gradient-text">curious by design</span>
+            </h2>
+            <p class="mt-4 text-base sm:text-lg" style="color: rgb(var(--muted))">
+              I'm a Computer Science student with a deep passion for full stack
+              development and artificial intelligence. I thrive on turning
+              complex problems into clean, scalable products with delightful
+              user experiences.
+            </p>
+          </div>
+
+          <div class="grid gap-8 lg:grid-cols-12 lg:gap-12">
+            <div class="reveal lg:col-span-5">
+              <div class="glass-strong relative overflow-hidden rounded-3xl p-8">
+                <div class="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-gradient-to-br from-brand-500/30 to-accent-400/30 blur-3xl"></div>
+                <h3 class="text-xl font-semibold">A short story</h3>
+                <p class="mt-4 leading-relaxed" style="color: rgb(var(--muted))">
+                  I started with curiosity — taking apart UIs to learn how they
+                  worked. Today I build full stack apps end-to-end, blend in AI
+                  features that solve real problems, and obsess over the polish
+                  that makes products feel premium.
+                </p>
+                <p class="mt-3 leading-relaxed" style="color: rgb(var(--muted))">
+                  Currently focused on the MERN stack and applied AI —
+                  preparing for full stack & AI engineering internships.
+                </p>
+
+                <div class="mt-8 grid grid-cols-2 gap-4">
+                  <div
+                    class="rounded-2xl border p-4 backdrop-blur"
+                    style="
+                      border-color: rgb(var(--border));
+                      background-color: rgb(var(--bg) / 0.4);
+                    "
+                  >
+                    <div class="text-2xl font-bold gradient-text">15+</div>
+                    <div class="mt-1 text-xs uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">Projects Built</div>
+                  </div>
+                  <div
+                    class="rounded-2xl border p-4 backdrop-blur"
+                    style="
+                      border-color: rgb(var(--border));
+                      background-color: rgb(var(--bg) / 0.4);
+                    "
+                  >
+                    <div class="text-2xl font-bold gradient-text">8+</div>
+                    <div class="mt-1 text-xs uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">Tech in Toolkit</div>
+                  </div>
+                  <div
+                    class="rounded-2xl border p-4 backdrop-blur"
+                    style="
+                      border-color: rgb(var(--border));
+                      background-color: rgb(var(--bg) / 0.4);
+                    "
+                  >
+                    <div class="text-2xl font-bold gradient-text">3+</div>
+                    <div class="mt-1 text-xs uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">Years Coding</div>
+                  </div>
+                  <div
+                    class="rounded-2xl border p-4 backdrop-blur"
+                    style="
+                      border-color: rgb(var(--border));
+                      background-color: rgb(var(--bg) / 0.4);
+                    "
+                  >
+                    <div class="text-2xl font-bold gradient-text">∞</div>
+                    <div class="mt-1 text-xs uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">Learning Mode</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2 lg:col-span-7">
+              <article class="reveal reveal-delay-1 card group relative overflow-hidden p-6 hover:shadow-glow">
+                <div class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-gradient-to-br from-brand-500 to-accent-400 opacity-15 blur-2xl transition-opacity group-hover:opacity-30"></div>
+                <div class="inline-grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-400 text-white shadow-lg">
+                  <i data-feather="layers" class="h-5 w-5"></i>
+                </div>
+                <h4 class="mt-5 text-lg font-semibold">Full Stack Mindset</h4>
+                <p class="mt-2 text-sm leading-relaxed" style="color: rgb(var(--muted))">
+                  Comfortable across the MERN stack — from designing data models
+                  to crafting accessible, responsive UIs.
+                </p>
+              </article>
+
+              <article class="reveal reveal-delay-2 card group relative overflow-hidden p-6 hover:shadow-glow">
+                <div class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-gradient-to-br from-fuchsia-500 to-rose-500 opacity-15 blur-2xl transition-opacity group-hover:opacity-30"></div>
+                <div class="inline-grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-fuchsia-500 to-rose-500 text-white shadow-lg">
+                  <i data-feather="cpu" class="h-5 w-5"></i>
+                </div>
+                <h4 class="mt-5 text-lg font-semibold">AI Curiosity</h4>
+                <p class="mt-2 text-sm leading-relaxed" style="color: rgb(var(--muted))">
+                  Hands-on with OpenCV, face recognition, and integrating modern
+                  AI APIs into real apps.
+                </p>
+              </article>
+
+              <article class="reveal reveal-delay-3 card group relative overflow-hidden p-6 hover:shadow-glow">
+                <div class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 opacity-15 blur-2xl transition-opacity group-hover:opacity-30"></div>
+                <div class="inline-grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-lg">
+                  <i data-feather="code" class="h-5 w-5"></i>
+                </div>
+                <h4 class="mt-5 text-lg font-semibold">Problem Solving</h4>
+                <p class="mt-2 text-sm leading-relaxed" style="color: rgb(var(--muted))">
+                  Strong CS fundamentals, daily DSA practice, and a love for
+                  breaking down hard problems.
+                </p>
+              </article>
+
+              <article class="reveal reveal-delay-4 card group relative overflow-hidden p-6 hover:shadow-glow">
+                <div class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 opacity-15 blur-2xl transition-opacity group-hover:opacity-30"></div>
+                <div class="inline-grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg">
+                  <i data-feather="zap" class="h-5 w-5"></i>
+                </div>
+                <h4 class="mt-5 text-lg font-semibold">Modern UI/UX</h4>
+                <p class="mt-2 text-sm leading-relaxed" style="color: rgb(var(--muted))">
+                  Pixel-aware designer-developer who cares about motion,
+                  micro-interactions, and details.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============== SKILLS ============== -->
+      <section id="skills" class="section-padding relative">
+        <div class="container-x">
+          <div class="reveal mb-12 mx-auto max-w-2xl text-center md:mb-16">
+            <div class="chip mx-auto mb-4" style="color: rgb(var(--muted))">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+              Skills
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              My <span class="gradient-text">technical toolbox</span>
+            </h2>
+            <p class="mt-4 text-base sm:text-lg" style="color: rgb(var(--muted))">
+              A focused stack chosen for shipping fast, modern, scalable
+              products — and exploring the AI frontier.
+            </p>
+          </div>
+
+          <div id="skills-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Cards rendered by main.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ============== PROJECTS ============== -->
+      <section id="projects" class="section-padding relative">
+        <div class="container-x">
+          <div class="reveal mb-12 mx-auto max-w-2xl text-center md:mb-16">
+            <div class="chip mx-auto mb-4" style="color: rgb(var(--muted))">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+              Featured Work
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              Projects I'm <span class="gradient-text">proud of</span>
+            </h2>
+            <p class="mt-4 text-base sm:text-lg" style="color: rgb(var(--muted))">
+              A mix of full stack apps and AI-driven experiments. Each one
+              taught me something new.
+            </p>
+          </div>
+
+          <div id="project-filters" class="mb-10 flex flex-wrap items-center justify-center gap-2"></div>
+
+          <div id="projects-grid" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3"></div>
+          <p id="projects-empty" class="hidden mt-10 text-center text-sm" style="color: rgb(var(--muted))"></p>
+        </div>
+      </section>
+
+      <!-- ============== TIMELINE ============== -->
+      <section id="experience" class="section-padding relative">
+        <div class="container-x">
+          <div class="reveal mb-12 mx-auto max-w-2xl text-center md:mb-16">
+            <div class="chip mx-auto mb-4" style="color: rgb(var(--muted))">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+              Experience & Education
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              The journey <span class="gradient-text">so far</span>
+            </h2>
+            <p class="mt-4 text-base sm:text-lg" style="color: rgb(var(--muted))">
+              From CS fundamentals to shipping production-grade projects —
+              here's where I'm at.
+            </p>
+          </div>
+
+          <div class="relative mx-auto max-w-4xl">
+            <div
+              aria-hidden="true"
+              class="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-brand-500/40 via-fuchsia-400/30 to-accent-400/40 md:left-1/2"
+            ></div>
+            <ul id="timeline" class="space-y-10"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============== GITHUB STATS ============== -->
+      <section id="github" class="section-padding relative">
+        <div class="container-x">
+          <div class="reveal mb-12 mx-auto max-w-2xl text-center md:mb-16">
+            <div class="chip mx-auto mb-4" style="color: rgb(var(--muted))">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+              GitHub
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              Code, <span class="gradient-text">contributions & consistency</span>
+            </h2>
+            <p class="mt-4 text-base sm:text-lg" style="color: rgb(var(--muted))">
+              A peek at my open source activity and the languages I work with most.
+            </p>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-3">
+            <div class="reveal glass overflow-hidden rounded-2xl p-2 lg:col-span-2">
+              <div class="relative overflow-hidden rounded-xl border p-4" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4)">
+                <div class="mb-3 flex items-center justify-between">
+                  <span class="text-xs uppercase tracking-[0.25em]" style="color: rgb(var(--muted))">Stats</span>
+                  <i data-feather="github" class="h-4 w-4" style="color: rgb(var(--muted))"></i>
+                </div>
+                <img class="mx-auto block w-full max-w-[640px] dark:hidden" loading="lazy" alt="GitHub stats" src="https://github-readme-stats.vercel.app/api?username=rajivBhardwaj07&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&theme=default&bg_color=00000000&title_color=4f46e5&icon_color=06b6d4&text_color=334155" />
+                <img class="mx-auto hidden w-full max-w-[640px] dark:block" loading="lazy" alt="GitHub stats" src="https://github-readme-stats.vercel.app/api?username=rajivBhardwaj07&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&theme=transparent&title_color=a5b4fc&icon_color=22d3ee&text_color=cbd5e1" />
+              </div>
+            </div>
+
+            <div class="reveal reveal-delay-1 glass overflow-hidden rounded-2xl p-2">
+              <div class="relative overflow-hidden rounded-xl border p-4" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4)">
+                <div class="mb-3 flex items-center justify-between">
+                  <span class="text-xs uppercase tracking-[0.25em]" style="color: rgb(var(--muted))">Top languages</span>
+                  <i data-feather="github" class="h-4 w-4" style="color: rgb(var(--muted))"></i>
+                </div>
+                <img class="mx-auto block w-full max-w-[640px] dark:hidden" loading="lazy" alt="Top languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rajivBhardwaj07&layout=compact&hide_border=true&theme=default&bg_color=00000000&title_color=4f46e5&text_color=334155" />
+                <img class="mx-auto hidden w-full max-w-[640px] dark:block" loading="lazy" alt="Top languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rajivBhardwaj07&layout=compact&hide_border=true&theme=transparent&title_color=a5b4fc&text_color=cbd5e1" />
+              </div>
+            </div>
+
+            <div class="reveal reveal-delay-2 glass overflow-hidden rounded-2xl p-2 lg:col-span-3">
+              <div class="relative overflow-hidden rounded-xl border p-4" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4)">
+                <div class="mb-3 flex items-center justify-between">
+                  <span class="text-xs uppercase tracking-[0.25em]" style="color: rgb(var(--muted))">Streak</span>
+                  <i data-feather="github" class="h-4 w-4" style="color: rgb(var(--muted))"></i>
+                </div>
+                <img class="mx-auto block w-full max-w-[800px] dark:hidden" loading="lazy" alt="GitHub streak" src="https://github-readme-streak-stats.herokuapp.com/?user=rajivBhardwaj07&hide_border=true&background=FFFFFF00&stroke=4f46e5&ring=4f46e5&fire=22d3ee&currStreakLabel=4f46e5&sideLabels=334155&dates=64748b&currStreakNum=0f172a&sideNums=0f172a" />
+                <img class="mx-auto hidden w-full max-w-[800px] dark:block" loading="lazy" alt="GitHub streak" src="https://github-readme-streak-stats.herokuapp.com/?user=rajivBhardwaj07&hide_border=true&background=00000000&stroke=a5b4fc&ring=a5b4fc&fire=22d3ee&currStreakLabel=a5b4fc&sideLabels=cbd5e1&dates=94a3b8&currStreakNum=f1f5f9&sideNums=f1f5f9" />
+              </div>
+            </div>
+
+            <div class="reveal reveal-delay-3 glass overflow-hidden rounded-2xl p-6 lg:col-span-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold">Contribution graph</h3>
+                <a href="https://github.com/rajivBhardwaj07" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-brand-400 hover:text-brand-300">
+                  Visit profile
+                  <i data-feather="external-link" class="h-4 w-4"></i>
+                </a>
+              </div>
+              <div class="mt-4 overflow-x-auto rounded-xl border p-4" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4)">
+                <img class="mx-auto block w-full max-w-[920px]" loading="lazy" alt="GitHub contributions chart" src="https://ghchart.rshah.org/6366f1/rajivBhardwaj07" />
+              </div>
+              <div class="mt-6 flex justify-center">
+                <a href="https://github.com/rajivBhardwaj07" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+                  <i data-feather="github" class="h-4 w-4"></i>
+                  @rajivBhardwaj07
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============== CERTIFICATIONS ============== -->
+      <section id="certifications" class="section-padding relative">
+        <div class="container-x">
+          <div class="reveal mb-12 mx-auto max-w-2xl text-center md:mb-16">
+            <div class="chip mx-auto mb-4" style="color: rgb(var(--muted))">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+              Certifications
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              Always <span class="gradient-text">leveling up</span>
+            </h2>
+            <p class="mt-4 text-base sm:text-lg" style="color: rgb(var(--muted))">
+              Certifications and courses that shaped my approach to building modern software.
+            </p>
+          </div>
+
+          <div id="certs-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </div>
+      </section>
+
+      <!-- ============== CONTACT ============== -->
+      <section id="contact" class="section-padding relative">
+        <div class="container-x">
+          <div class="reveal mb-12 mx-auto max-w-2xl text-center md:mb-16">
+            <div class="chip mx-auto mb-4" style="color: rgb(var(--muted))">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+              Get in touch
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              Let's build something <span class="gradient-text">together</span>
+            </h2>
+            <p class="mt-4 text-base sm:text-lg" style="color: rgb(var(--muted))">
+              Have a project, internship, or just want to say hi? My inbox is always open.
+            </p>
+          </div>
+
+          <div class="grid gap-8 lg:grid-cols-12">
+            <aside class="reveal lg:col-span-5">
+              <div class="glass-strong relative overflow-hidden rounded-3xl p-8">
+                <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br from-brand-500/30 to-accent-400/30 blur-3xl"></div>
+                <h3 class="text-xl font-semibold">Reach me directly</h3>
+                <p class="mt-2 text-sm" style="color: rgb(var(--muted))">
+                  I usually reply within a day. The fastest way is email or LinkedIn.
+                </p>
+
+                <ul class="mt-6 space-y-3">
+                  <li>
+                    <a href="mailto:rajivbhardwaj7707@gmail.com" class="flex items-center gap-4 rounded-2xl border p-4 transition-colors hover:bg-brand-500/5" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4)">
+                      <span class="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-400 text-white shadow-glow">
+                        <i data-feather="mail" class="h-4 w-4"></i>
+                      </span>
+                      <span class="min-w-0">
+                        <span class="block text-xs uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">Email</span>
+                        <span class="block truncate text-sm font-medium">rajivbhardwaj7707@gmail.com</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.linkedin.com/in/rajiv-bhardwaj-251a78293/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 rounded-2xl border p-4 transition-colors hover:bg-brand-500/5" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4)">
+                      <span class="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-400 text-white shadow-glow">
+                        <i data-feather="linkedin" class="h-4 w-4"></i>
+                      </span>
+                      <span class="min-w-0">
+                        <span class="block text-xs uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">LinkedIn</span>
+                        <span class="block truncate text-sm font-medium">Rajiv Bhardwaj</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/rajivBhardwaj07" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 rounded-2xl border p-4 transition-colors hover:bg-brand-500/5" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4)">
+                      <span class="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-400 text-white shadow-glow">
+                        <i data-feather="github" class="h-4 w-4"></i>
+                      </span>
+                      <span class="min-w-0">
+                        <span class="block text-xs uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">GitHub</span>
+                        <span class="block truncate text-sm font-medium">@rajivBhardwaj07</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <div class="flex items-center gap-4 rounded-2xl border p-4" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4)">
+                      <span class="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-400 text-white shadow-glow">
+                        <i data-feather="map-pin" class="h-4 w-4"></i>
+                      </span>
+                      <span class="min-w-0">
+                        <span class="block text-xs uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">Location</span>
+                        <span class="block truncate text-sm font-medium">India · Remote-friendly</span>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="mt-8 rounded-2xl border border-brand-400/20 bg-brand-500/5 p-4">
+                  <p class="text-sm">
+                    <span class="font-semibold text-brand-400">Currently:</span>
+                    open to <span style="color: rgb(var(--fg))">internships</span>,
+                    freelance gigs, and collaborations on full stack & AI projects.
+                  </p>
+                </div>
+              </div>
+            </aside>
+
+            <form id="contact-form" novalidate class="reveal reveal-delay-1 glass-strong relative space-y-5 rounded-3xl p-8 lg:col-span-7">
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label for="cf-name" class="mb-2 block text-xs font-medium uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">Your name</label>
+                  <input id="cf-name" name="name" type="text" required placeholder="Jane Doe" class="w-full rounded-2xl border bg-transparent px-4 py-3 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.6)" />
+                </div>
+                <div>
+                  <label for="cf-email" class="mb-2 block text-xs font-medium uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">Email</label>
+                  <input id="cf-email" name="email" type="email" required placeholder="jane@example.com" class="w-full rounded-2xl border bg-transparent px-4 py-3 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.6)" />
+                </div>
+              </div>
+              <div>
+                <label for="cf-message" class="mb-2 block text-xs font-medium uppercase tracking-[0.2em]" style="color: rgb(var(--muted))">Message</label>
+                <textarea id="cf-message" name="message" rows="6" required placeholder="Tell me about your project, role, or idea…" class="w-full resize-y rounded-2xl border bg-transparent px-4 py-3 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.6)"></textarea>
+              </div>
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <button type="submit" id="cf-submit" class="btn-primary disabled:opacity-70">
+                  <i data-feather="send" class="h-4 w-4"></i>
+                  <span>Send message</span>
+                </button>
+                <span id="cf-status" class="text-sm font-medium"></span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============== FOOTER ============== -->
+    <footer class="relative z-10 mt-12 border-t backdrop-blur-xl" style="border-color: rgb(var(--border)); background-color: rgb(var(--card) / 0.4)">
+      <div class="container-x px-4 py-14 sm:px-6 lg:px-8">
+        <div class="grid gap-10 md:grid-cols-12">
+          <div class="md:col-span-5">
+            <a href="#home" class="inline-flex items-center gap-2">
+              <span class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-400 text-white shadow-glow">
+                <span class="font-mono text-sm font-bold">RB</span>
+              </span>
+              <span class="text-base font-semibold">Rajiv Bhardwaj</span>
+            </a>
+            <p class="mt-4 max-w-md text-sm" style="color: rgb(var(--muted))">
+              Full Stack Developer | AI Enthusiast | MERN Stack Developer.
+              Building thoughtful products at the intersection of web
+              engineering and AI.
+            </p>
+
+            <div class="mt-5 flex items-center gap-2">
+              <a href="https://github.com/rajivBhardwaj07" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="grid h-9 w-9 place-items-center rounded-full border backdrop-blur transition-colors hover:text-brand-400" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4); color: rgb(var(--muted))">
+                <i data-feather="github" class="h-4 w-4"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/rajiv-bhardwaj-251a78293/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="grid h-9 w-9 place-items-center rounded-full border backdrop-blur transition-colors hover:text-brand-400" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4); color: rgb(var(--muted))">
+                <i data-feather="linkedin" class="h-4 w-4"></i>
+              </a>
+              <a href="mailto:rajivbhardwaj7707@gmail.com" aria-label="Email" class="grid h-9 w-9 place-items-center rounded-full border backdrop-blur transition-colors hover:text-brand-400" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4); color: rgb(var(--muted))">
+                <i data-feather="mail" class="h-4 w-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="md:col-span-3">
+            <h4 class="text-xs uppercase tracking-[0.25em]" style="color: rgb(var(--muted))">Navigate</h4>
+            <ul class="mt-4 grid grid-cols-2 gap-y-2 text-sm">
+              <li><a href="#home" class="transition-colors hover:text-brand-400" style="color: rgb(var(--muted))">Home</a></li>
+              <li><a href="#about" class="transition-colors hover:text-brand-400" style="color: rgb(var(--muted))">About</a></li>
+              <li><a href="#skills" class="transition-colors hover:text-brand-400" style="color: rgb(var(--muted))">Skills</a></li>
+              <li><a href="#projects" class="transition-colors hover:text-brand-400" style="color: rgb(var(--muted))">Projects</a></li>
+              <li><a href="#experience" class="transition-colors hover:text-brand-400" style="color: rgb(var(--muted))">Experience</a></li>
+              <li><a href="#github" class="transition-colors hover:text-brand-400" style="color: rgb(var(--muted))">GitHub</a></li>
+              <li><a href="#certifications" class="transition-colors hover:text-brand-400" style="color: rgb(var(--muted))">Certs</a></li>
+              <li><a href="#contact" class="transition-colors hover:text-brand-400" style="color: rgb(var(--muted))">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="md:col-span-4">
+            <h4 class="text-xs uppercase tracking-[0.25em]" style="color: rgb(var(--muted))">Stay in touch</h4>
+            <p class="mt-4 text-sm" style="color: rgb(var(--muted))">
+              Want to collaborate or just chat about AI & web dev?
+            </p>
+            <a href="#contact" class="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-accent-400 px-4 py-2 text-sm font-semibold text-white shadow-glow">
+              <i data-feather="mail" class="h-4 w-4"></i>
+              Say hello
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-6 text-xs sm:flex-row" style="border-color: rgb(var(--border)); color: rgb(var(--muted))">
+          <p class="inline-flex items-center gap-1.5">
+            © <span id="year">2025</span> Rajiv Bhardwaj. Crafted with
+            <i data-feather="heart" class="h-3.5 w-3.5 text-rose-500"></i>
+            using Node.js, Tailwind & vanilla JS.
+          </p>
+          <a href="#home" class="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 backdrop-blur transition-colors hover:text-brand-400" style="border-color: rgb(var(--border)); background-color: rgb(var(--bg) / 0.4)">
+            Back to top
+            <i data-feather="arrow-up" class="h-3.5 w-3.5"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/main.js" defer></script>
+  </body>
+</html>
